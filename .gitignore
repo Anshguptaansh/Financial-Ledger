@@ -20,3 +20,8 @@ Thumbs.db
 
 # ML model artifacts (large files)
 *.joblib
+
+# Vercel
+.vercel/
+
+.vercel
