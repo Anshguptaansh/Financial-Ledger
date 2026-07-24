@@ -12,6 +12,10 @@ if (!cached) {
 }
 
 async function connectDB() {
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI is missing from Vercel Environment Variables.');
+  }
+
   if (cached.conn) {
     return cached.conn;
   }

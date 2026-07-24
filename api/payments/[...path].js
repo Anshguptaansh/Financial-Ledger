@@ -6,6 +6,10 @@ const app = createApp();
 app.use('/api/payments', paymentRoutes);
 
 module.exports = async (req, res) => {
-  await connectDB();
+  try {
+    await connectDB();
+  } catch (err) {
+    return res.status(503).json({ message: err.message });
+  }
   return app(req, res);
 };
