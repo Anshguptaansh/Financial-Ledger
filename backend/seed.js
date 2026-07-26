@@ -9,11 +9,13 @@ async function seed() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB');
 
-    // Remove any old users and create fresh admin
+    // Remove any old users and create fresh accounts
     await User.deleteMany({});
-    const user = new User({ username: 'Ansh', password: 'Ansh_0207' });
-    await user.save();
-    console.log('✅ Admin user created: Ansh / Ansh_0207');
+    const user1 = new User({ username: 'Ansh', password: 'Ansh_0207' });
+    const user2 = new User({ username: 'admin', password: 'admin123' });
+    await user1.save();
+    await user2.save();
+    console.log('✅ Accounts created: Ansh / Ansh_0207 AND admin / admin123');
 
     await mongoose.disconnect();
     console.log('Done.');

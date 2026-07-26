@@ -90,7 +90,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-center text-xs text-surface-400 dark:text-surface-500 mt-5">
-            Default: admin / admin123
+            Credentials: <b>Ansh</b> / <b>Ansh_0207</b> or <b>admin</b> / <b>admin123</b>
           </p>
         </div>
       </div>
