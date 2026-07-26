@@ -1,135 +1,162 @@
-# 💰 Finance Tracker — Lending Business App
+# 💰 Financial Ledger & Credit Risk Intelligence Platform
 
-A professional full-stack finance tracker for small lending businesses.  
-Manage customers, loans, interest calculations, payments, PDF bills, and monthly reports.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://financial-ledger-zeta.vercel.app)
+[![React](https://img.shields.io/badge/Frontend-React_18_%2B_Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Express](https://img.shields.io/badge/Backend-Node.js_%2B_Express-000000?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![FastAPI](https://img.shields.io/badge/ML_Service-FastAPI_%2B_Scikit_Learn-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 
----
-
-## 🛠 Tech Stack
-
-| Layer      | Tech                             |
-|------------|----------------------------------|
-| Frontend   | React 18 + Vite + Tailwind CSS 3 |
-| Backend    | Node.js + Express                |
-| Database   | MongoDB (Mongoose)               |
-| Auth       | JWT (Bearer token)               |
-| PDF        | PDFKit (server-side)             |
+A modern, full-stack financial ledger and credit risk assessment platform built for lending businesses and financial managers. Seamlessly handles customer management, loan interest calculations, payment schedules, automated PDF billing, monthly accounting reports, and real-time Machine Learning credit default prediction.
 
 ---
 
-## 📁 Project Structure
+## 🔗 Live Application
+
+🌐 **Production Web App**: [https://financial-ledger-zeta.vercel.app](https://financial-ledger-zeta.vercel.app)
+
+---
+
+## 🌟 Key Features
+
+- 📊 **Real-time Financial Analytics Dashboard**
+  - Instant overview of principal disbursed, total interest accrued, collected payments, and active customer balances.
+
+- 👥 **Customer & Loan Management**
+  - Maintain customer profiles, active loans, custom monthly/annual interest rates, and loan statuses.
+  - Supports both **Simple Interest** and **Compound Interest** calculation models.
+
+- 🤖 **Machine Learning Credit Risk Scoring**
+  - Powered by a **FastAPI** microservice serving a trained **Random Forest** classification model.
+  - Analyzes applicant age, checking/savings balances, credit amount, loan duration, and housing status to output real-time default probability, risk levels (*Low, Medium, High*), and model confidence metrics.
+
+- 📄 **Automated PDF Billing & Exports**
+  - Generates downloadable, formatted PDF account statements and bills on-the-fly using server-side rendering.
+  - Complete JSON database backup export and import functionality.
+
+- 🎨 **Modern & Adaptive UI**
+  - Responsive dark/light theme support built with Tailwind CSS.
+  - Fluid animations, interactive risk gauges, and mobile-first design.
+
+---
+
+## 🏗 Architecture Overview
 
 ```
-Finance/
-├── backend/
-│   ├── controllers/     # Business logic
-│   ├── middleware/       # JWT auth middleware
-│   ├── models/           # Mongoose schemas
-│   ├── routes/           # Express routes
-│   ├── server.js         # App entry point
-│   ├── seed.js           # Creates default admin user
-│   └── .env              # Environment variables
-├── frontend/
-│   ├── public/           # Static assets
-│   └── src/
-│       ├── api/          # Axios instance
-│       ├── components/   # Reusable UI components
-│       ├── context/      # Auth + Theme providers
-│       └── pages/        # Application pages
+Financial-Ledger/
+├── api/                   # Vercel Serverless Functions
+│   ├── auth/              # JWT Registration & Login Handlers
+│   ├── customers/         # Customer Management CRUD Endpoints
+│   ├── loans/             # Loan Processing & Interest Endpoints
+│   ├── payments/          # Payment Logging & Calculation Endpoints
+│   ├── reports/           # Analytics & Server-Side PDF Billing Handlers
+│   └── credit-risk/       # Proxy to FastAPI ML Microservice
+├── backend/               # Core Express backend logic & Mongoose schemas
+│   ├── controllers/       # Controller logic
+│   ├── models/            # Mongoose schemas (User, Customer, Loan, Payment)
+│   └── seed.js            # Database seeding utility script
+├── frontend/              # React 18 + Vite + Tailwind CSS SPA
+│   ├── src/
+│   │   ├── api/           # Axios HTTP client configuration
+│   │   ├── components/    # Reusable UI components & modals
+│   │   ├── context/       # Authentication & Theme state providers
+│   │   └── pages/         # Application view components
+├── ml/                    # Machine Learning Microservice
+│   ├── app.py             # FastAPI REST endpoint server
+│   ├── credit_risk_model.py # Model training & evaluation pipeline
+│   └── requirements.txt   # Python ML dependencies
+├── vercel.json            # Vercel Serverless & rewrite configuration
 └── README.md
 ```
 
 ---
 
-## 🚀 How to Run
+## 🛠 Tech Stack
+
+| Component | Tech / Library |
+|---|---|
+| **Frontend Framework** | React 18, Vite, React Router DOM |
+| **Styling & UI** | Tailwind CSS, PostCSS, Custom Design System |
+| **Serverless API** | Express.js, Vercel Serverless Functions |
+| **ML Microservice** | Python 3, FastAPI, Uvicorn, Scikit-Learn, Pandas, Joblib |
+| **Database** | MongoDB Atlas (Mongoose ODM) |
+| **Authentication** | JSON Web Tokens (JWT) + Bcrypt password hashing |
+| **Document Generation** | PDFKit |
+
+---
+
+## 🤖 Machine Learning Model Summary
+
+The credit risk scoring engine uses data trained on historical credit applicant profiles:
+
+- **Model Type**: Random Forest Classifier / Scikit-Learn Pipeline
+- **Evaluation F1-Score**: `~0.785`
+- **Key Features Analyzed**:
+  - Applicant Age & Sex
+  - Credit Loan Amount & Duration
+  - Checking & Savings Account Tier
+  - Housing Ownership Status & Job Category
+- **Outputs**:
+  - `risk_score` (Probability of default: `0.0` - `1.0`)
+  - `risk_level` (`Low`, `Medium`, `High`)
+  - `prediction` (`good` or `bad`)
+
+---
+
+## ⚙️ Local Development Setup
 
 ### Prerequisites
+- **Node.js** (v18+)
+- **Python** (v3.10+)
+- **MongoDB** (Local instance or MongoDB Atlas cluster URI)
 
-- **Node.js** (v18+) — [Download](https://nodejs.org/)
-- **MongoDB** — [Download](https://www.mongodb.com/try/download/community) or use [MongoDB Atlas](https://cloud.mongodb.com/)
+---
 
-### 1. Start MongoDB
-
-Make sure MongoDB is running locally on `mongodb://localhost:27017`, or update `backend/.env` with your Atlas URI.
-
-### 2. Start Backend
-
+### 1. Repository Setup
 ```bash
-cd backend
-npm install
-npm run seed       # Creates default user: Ansh / Ansh_0207
-npm run dev        # Starts on http://localhost:5000
+git clone https://github.com/Anshguptaansh/Financial-Ledger.git
+cd Financial-Ledger
 ```
 
-### 3. Start Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev        # Starts on http://localhost:3000
-```
-
-### 4. Open App
-
-Go to **http://localhost:3000** and login with:
-- **Username:** `Ansh`
-- **Password:** `Ansh_0207`
-
----
-
-## ✨ Features
-
-- **Dashboard** — Total money given, interest earned, pending, customers
-- **Customer Management** — Add, edit, delete with custom interest rates
-- **Loan Management** — Simple & compound interest, per-loan rates
-- **Auto Interest Calc** — Calculated on-the-fly based on elapsed time
-- **Payment Tracking** — Record payments, view history, remaining balance
-- **PDF Bills** — Download loan bills as professional PDFs
-- **Monthly Report** — All customers with interest & payment summary
-- **Backup/Restore** — Export/import data as JSON
-- **Dark/Light Mode** — Toggle with system preference detection
-- **Mobile Responsive** — Works great on phones and tablets
-
----
-
-## 🔐 Default Login
-
-| Username | Password  |
-|----------|-----------|
-| Ansh     | Ansh_0207 |
-
-> ⚠️ Change the password after first login in production.
-
----
-
-## 📊 Interest Formulas
-
-**Simple Interest:**
-```
-Monthly = Principal × (Rate / 100)
-Total   = Principal × Rate × Months / 100
-```
-
-**Compound Interest (Monthly):**
-```
-Total Interest = Principal × ((1 + Rate/100)^Months − 1)
-```
-
----
-
-## 💾 Backup
-
-- **Export**: Dashboard → Backup → Export Data (downloads JSON)
-- **Import**: Dashboard → Backup → Select File (replaces all data)
-
----
-
-## 📝 Environment Variables
-
-Edit `backend/.env`:
+### 2. Backend Environment Setup
+Create a `.env` file inside the `backend/` directory:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/finance_tracker
-JWT_SECRET=your_secret_key_here
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+CORS_ORIGIN=http://localhost:3000
+ML_SERVICE_URL=http://localhost:8000
 ```
+
+### 3. Frontend Setup & Launch
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### 4. ML Microservice Setup & Launch
+```bash
+cd ml
+pip install -r requirements.txt
+python -m uvicorn app:app --host 0.0.0.0 --port 8000
+```
+
+---
+
+## 📝 Environment Variables (Production / Vercel)
+
+When deploying to Vercel, set the following environment variables in **Project Settings -> Environment Variables**:
+
+| Variable Name | Description | Example / Note |
+|---|---|---|
+| `MONGO_URI` | MongoDB Atlas Connection String | `mongodb+srv://user:pass@cluster.mongodb.net/dbname` |
+| `JWT_SECRET` | Secret key used for signing JWT tokens | Random string (e.g. 32+ characters) |
+| `CORS_ORIGIN` | Allowed origin for API requests | `https://financial-ledger-zeta.vercel.app` |
+| `ML_SERVICE_URL` | URL of the hosted FastAPI service | `http://localhost:8000` or deployed ML service |
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
