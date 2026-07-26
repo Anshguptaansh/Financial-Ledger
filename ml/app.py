@@ -43,7 +43,7 @@ feature_names  = bundle["feature_names"]
 model_name     = bundle["best_model_name"]
 model_f1       = bundle["best_f1_score"]
 
-print(f"✅ Loaded model: {model_name} (F1 = {model_f1:.4f})")
+print(f"[OK] Loaded model: {model_name} (F1 = {model_f1:.4f})")
 print(f"   Features: {feature_names}")
 
 # ── FastAPI app ──────────────────────────────────────────────────────────────
