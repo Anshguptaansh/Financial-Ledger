@@ -1,9 +1,9 @@
 const connectDB = require('../_lib/db');
 const createApp = require('../_lib/app');
-const customerRoutes = require('../../backend/routes/customers');
+const authRoutes = require('../../backend/routes/auth');
 
 const app = createApp();
-app.use('/api/customers', customerRoutes);
+app.use(['/api/auth', '/'], authRoutes);
 
 module.exports = async (req, res) => {
   try {

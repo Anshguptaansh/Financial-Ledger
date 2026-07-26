@@ -1,9 +1,9 @@
 const connectDB = require('../_lib/db');
 const createApp = require('../_lib/app');
-const paymentRoutes = require('../../backend/routes/payments');
+const customerRoutes = require('../../backend/routes/customers');
 
 const app = createApp();
-app.use('/api/payments', paymentRoutes);
+app.use(['/api/customers', '/'], customerRoutes);
 
 module.exports = async (req, res) => {
   try {

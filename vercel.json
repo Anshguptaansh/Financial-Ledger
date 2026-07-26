@@ -2,7 +2,18 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/api/auth/(.*)", "destination": "/api/auth/index.js" },
+    { "source": "/api/auth", "destination": "/api/auth/index.js" },
+    { "source": "/api/customers/(.*)", "destination": "/api/customers/index.js" },
+    { "source": "/api/customers", "destination": "/api/customers/index.js" },
+    { "source": "/api/loans/(.*)", "destination": "/api/loans/index.js" },
+    { "source": "/api/loans", "destination": "/api/loans/index.js" },
+    { "source": "/api/payments/(.*)", "destination": "/api/payments/index.js" },
+    { "source": "/api/payments", "destination": "/api/payments/index.js" },
+    { "source": "/api/reports/(.*)", "destination": "/api/reports/index.js" },
+    { "source": "/api/reports", "destination": "/api/reports/index.js" },
+    { "source": "/api/credit-risk/(.*)", "destination": "/api/credit-risk/index.js" },
+    { "source": "/api/credit-risk", "destination": "/api/credit-risk/index.js" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
