@@ -18,8 +18,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# ML model artifacts (large files)
-*.joblib
+# ML model artifacts
 
 # Vercel
 .vercel/
